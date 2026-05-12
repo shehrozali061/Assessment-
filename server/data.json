@@ -1,0 +1,102 @@
+{
+  "vehicles": [
+    {
+      "id": "v1",
+      "make": "Toyota",
+      "model": "Corolla",
+      "year": 2023,
+      "licensePlate": "ABC-123",
+      "status": "available",
+      "pricePerDay": 50,
+      "category": "sedan"
+    },
+    {
+      "id": "v2",
+      "make": "Honda",
+      "model": "Civic",
+      "year": 2023,
+      "licensePlate": "DEF-456",
+      "status": "available",
+      "pricePerDay": 55,
+      "category": "sedan"
+    },
+    {
+      "id": "v3",
+      "make": "Toyota",
+      "model": "Fortuner",
+      "year": 2024,
+      "licensePlate": "GHI-789",
+      "status": "available",
+      "pricePerDay": 80,
+      "category": "suv"
+    },
+    {
+      "id": "v4",
+      "make": "Suzuki",
+      "model": "Swift",
+      "year": 2022,
+      "licensePlate": "JKL-012",
+      "status": "rented",
+      "pricePerDay": 40,
+      "category": "hatchback"
+    },
+    {
+      "id": "v5",
+      "make": "Honda",
+      "model": "HR-V",
+      "year": 2024,
+      "licensePlate": "MNO-345",
+      "status": "maintenance",
+      "pricePerDay": 65,
+      "category": "suv"
+    }
+  ],
+  "customers": [
+    {
+      "id": "c1",
+      "name": "John Smith",
+      "email": "john@email.com",
+      "phone": "555-0101",
+      "licenseNumber": "DL123456",
+      "createdAt": "2024-01-15"
+    },
+    {
+      "id": "c2",
+      "name": "Sarah Johnson",
+      "email": "sarah@email.com",
+      "phone": "555-0102",
+      "licenseNumber": "DL789012",
+      "createdAt": "2024-02-20"
+    },
+    {
+      "id": "c3",
+      "name": "Mike Wilson",
+      "email": "mike@email.com",
+      "phone": "555-0103",
+      "licenseNumber": "DL345678",
+      "createdAt": "2024-03-10"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "b1",
+      "customerId": "c1",
+      "vehicleId": "v4",
+      "startDate": "2026-05-10",
+      "endDate": "2026-05-15",
+      "status": "active",
+      "totalPrice": 200,
+      "notes": ""
+    },
+    {
+      "id": "b2",
+      "customerId": "c2",
+      "vehicleId": "v1",
+      "startDate": "2026-05-14",
+      "endDate": "2026-05-17",
+      "status": "confirmed",
+      "totalPrice": 150,
+      "notes": "Airport pickup"
+    }
+  ]
+}
