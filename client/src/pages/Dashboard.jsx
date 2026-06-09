@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { api } from '../api/api';
 
 function Dashboard() {
@@ -7,11 +7,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    loadDashboard();
-  }, []);
-
-  const loadDashboard = async () => {
+  const loadDashboard = useCallback(async () => {
     try {
       setLoading(true);
       const [statsData, bookingsData] = await Promise.all([
@@ -20,12 +16,16 @@ function Dashboard() {
       ]);
       setStats(statsData);
       setRecentBookings(bookingsData.slice(-5).reverse());
-    } catch (err) {
+    } catch {
       setError('Failed to load dashboard data');
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    queueMicrotask(loadDashboard);
+  }, [loadDashboard]);
 
   if (loading) return <div className="loading">Loading dashboard...</div>;
   if (error) return <div className="error">{error}</div>;

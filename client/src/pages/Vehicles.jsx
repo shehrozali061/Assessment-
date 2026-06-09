@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { api } from '../api/api';
 
 function Vehicles() {
@@ -11,20 +11,20 @@ function Vehicles() {
   });
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    loadVehicles();
-  }, []);
-
-  const loadVehicles = async () => {
+  const loadVehicles = useCallback(async () => {
     try {
       const data = await api.getVehicles();
       setVehicles(data);
-    } catch (err) {
+    } catch {
       setError('Failed to load vehicles');
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    queueMicrotask(loadVehicles);
+  }, [loadVehicles]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -36,7 +36,7 @@
       "model": "Swift",
       "year": 2022,
       "licensePlate": "JKL-012",
-      "status": "rented",
+      "status": "available",
       "pricePerDay": 40,
       "category": "hatchback"
     },
@@ -84,7 +84,7 @@
       "vehicleId": "v4",
       "startDate": "2026-05-10",
       "endDate": "2026-05-15",
-      "status": "active",
+      "status": "completed",
       "totalPrice": 200,
       "notes": ""
     },

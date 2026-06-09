@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { api } from '../api/api';
 
 function Bookings() {
@@ -13,11 +14,7 @@ function Bookings() {
   });
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
+  const loadData = useCallback(async () => {
     try {
       const [bookingsData, customersData, vehiclesData] = await Promise.all([
         api.getBookingsFull(),
@@ -27,12 +24,16 @@ function Bookings() {
       setBookings(bookingsData);
       setCustomers(customersData);
       setVehicles(vehiclesData);
-    } catch (err) {
+    } catch {
       setError('Failed to load data');
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    queueMicrotask(loadData);
+  }, [loadData]);
 
   const availableVehicles = vehicles.filter(v => v.status === 'available');
 
@@ -141,6 +142,7 @@ function Bookings() {
                       {(booking.status === 'confirmed' || booking.status === 'active') && (
                         <button className="btn btn-danger btn-sm" onClick={() => handleStatusChange(booking, 'cancelled')}>Cancel</button>
                       )}
+                      <Link className="btn btn-sm" to={`/bookings/${booking.id}`}>View</Link>
                       <button className="btn btn-sm" onClick={() => handleEdit(booking)}>Edit</button>
                       <button className="btn btn-danger btn-sm" onClick={() => handleDelete(booking.id)}>Delete</button>
                     </td>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { api } from '../api/api';
 
 function Customers() {
@@ -11,20 +11,20 @@ function Customers() {
   });
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    loadCustomers();
-  }, []);
-
-  const loadCustomers = async () => {
+  const loadCustomers = useCallback(async () => {
     try {
       const data = await api.getCustomers();
       setCustomers(data);
-    } catch (err) {
+    } catch {
       setError('Failed to load customers');
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    queueMicrotask(loadCustomers);
+  }, [loadCustomers]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

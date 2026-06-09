@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Bookings from './pages/Bookings';
+import BookingDetail from './pages/BookingDetail';
 import Vehicles from './pages/Vehicles';
 import Customers from './pages/Customers';
 import './App.css';
@@ -24,6 +25,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/bookings" element={<Bookings />} />
+            <Route path="/bookings/:bookingId" element={<BookingDetail />} />
             <Route path="/vehicles" element={<Vehicles />} />
             <Route path="/customers" element={<Customers />} />
           </Routes>
